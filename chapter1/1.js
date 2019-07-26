@@ -27,6 +27,23 @@ let hasUniqueChars2 = function(str) {
 }
 
 
+//Ideal solution if has only ASCII characters.
+
+let uniqueCharsPresent = function(str) {
+    let duplicatePresent = 0;
+
+    for(let i = 0; i< str.length; i++) {
+
+        let j = str[i].charCodeAt(0) - 'a'.charCodeAt(0);
+        if(duplicatePresent & (1 << j) > 0) {
+            return false;
+        } else {
+            duplicatePresent |= (1<<j);
+        }
+    }
+    return true;
+}
+
 
 //Test cases
 
@@ -37,3 +54,7 @@ console.log(hasUniqueChars('sri'));
 console.log(hasUniqueChars2(''));
 console.log(hasUniqueChars2('sreenivas'));
 console.log(hasUniqueChars2('sri'));
+
+console.log(uniqueCharsPresent(''));
+console.log(uniqueCharsPresent('sreenivas'));
+console.log(uniqueCharsPresent('sri'));
